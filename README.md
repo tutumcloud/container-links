@@ -1,4 +1,4 @@
-tutum/utils:container-links
+tutum/container-links
 ===========================
 
 Encrpyted links using ssh channel
@@ -9,7 +9,7 @@ Host A (server side):
     docker run -d -P \
       -e TUTUM_PUBLIC_KEY=<"ssh-rsa [...]"> \
       --link <container>:<whatever_name> \
-      tutum/utils:container-links
+      tutum/container-links
 
 Host B (client side):
     docker run -d \
@@ -19,7 +19,7 @@ Host B (client side):
       -e SERVER_PORT_22_TCP_ADDR=<IP_OF_HOST_A> \
       --expose <PORT_OF_SERVICE> \
       --name securelink \
-      tutum/utils:container-links
+      tutum/container-links
 
 ```
 
@@ -32,7 +32,7 @@ Host A:
     docker run -d -P \
       -e TUTUM_PUBLIC_KEY="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBoUxftcclQOrFccphJ9UueEWKFB7oFblWnYAbZWQ6Suag3a/y/Za9enJj0t4afkaJX4F0L6YhYuinN0jh/JKpYirTUl9Z+2lFL6jxENPqlkQ6Awt0Eu8xNTU+7d4Gs5/Vd4Ir55FOMZKu1L202yMuUUrMSxMYV7iNf3fqtNnOD2LalAsbuHAvQGVgIDVaBaFUwDr/PuLGq6Ys7t/5BBlOOhBeQlOBFjyNrzSiTgu+njyJNyaVA/73C8lE4Pnkur5MW7azcfGMwEDoAx4+hpra/SMXWSQWCd0jMU7G+/yko5z8J0npKmQq9HHtCSWbF8+awLAGRBN8/aeWSAklTM9/ root@e8e284d8ce8f" \
       --link mysql:whatever \
-      tutum/utils:container-links
+      tutum/container-links
 
 Host B:
     docker run -d \
@@ -42,7 +42,7 @@ Host B:
       -e SERVER_PORT_22_TCP_ADDR=107.170.48.59 \
       --expose 3306 \
       --name securelink \
-      tutum/utils:container-links
+      tutum/container-links
 
     docker run -d --link securelink:DB  -e DB_PASS=admin -p 80:80 tutum/wordpress-stackable:latest
 ```
@@ -54,7 +54,7 @@ Plain links using socat
 Host A (server side):
     docker run -d -P \
       --link mysql:whatever \
-      tutum/utils:container-links
+      tutum/container-links
 
 Host B (client side):
     docker run -d \
@@ -63,7 +63,7 @@ Host B (client side):
       -e LINKS_LISTENING_PORT=<PORT_OF_SERVICE> \
       --expose <PORT_OF_SERVICE> \
       --name plainlink \
-      tutum/utils:container-links
+      tutum/container-links
 ```
 
 **Examples (wordpress && mysql)**
@@ -74,7 +74,7 @@ Host A:
 
     docker run -d -P \
       --link mysql:whatever \
-      tutum/utils:container-links
+      tutum/container-links
 
 Host B:
     docker run -d \
@@ -83,7 +83,7 @@ Host B:
       -e LINKS_LISTENING_PORT=3306 \
       --expose 3306 \
       --name plainlink \
-      tutum/utils:container-links
+      tutum/container-links
 
     docker run -d --link plainlink:db -e DB_PASS=admin -p 802:80 tutum/wordpress-stackable
 ```
