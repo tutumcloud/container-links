@@ -1,7 +1,7 @@
 tutum/container-links
 ===========================
 
-Encrpyted links using ssh channel
+Encrypted links using ssh channel
 ---------------------------------
 
 ```
