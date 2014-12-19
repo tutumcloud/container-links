@@ -12,6 +12,6 @@ RUN apt-get update && \
 ADD scripts /
 RUN chmod +x /*.sh
 
-EXPOSE 22
+# EXPOSE 22
 
 CMD ["/run.sh"]
